@@ -15,7 +15,7 @@ MAINTAINER Maintaner davidhalldor
 RUN apt-get update
 
 # Install necessary tools
-RUN apt-get install -y wget dialog net-tools
+RUN apt-get install -y wget
 
 # Download and Install Nginx
 RUN apt-get install -y nginx  
@@ -25,6 +25,9 @@ RUN rm -v /etc/nginx/nginx.conf
 
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
+
+# Add static index html
+ADD index.html /www/data
 
 # Append "daemon off;" to the beginning of the configuration
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
